@@ -4,5 +4,3 @@ const elementoSaldo = document.querySelector(".saldo-valor .valor") as HTMLEleme
 if (elementoSaldo !== null) {
 elementoSaldo.textContent = saldo.toString();
 }
-
-/* mudanças*/
