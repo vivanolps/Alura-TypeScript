@@ -1,5 +1,5 @@
 type Transacao = {
-    tipoTransacao: string;
+    tipoTransacao: TipoTransacao;
     valor: number;
     data: Date;
 }
