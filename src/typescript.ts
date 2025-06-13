@@ -25,5 +25,7 @@ enum TipoTransacao {
 const novaTransacao: Transacao = {
     tipoTransacao: TipoTransacao.PAGAMENTO_BOLETO,
     data: new Date(),
-    valor: 0
+    valor: 0,
 }
+
+console.log(novaTransacao);
