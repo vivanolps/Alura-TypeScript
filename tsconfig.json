@@ -1,10 +1,12 @@
 {
     "compilerOptions": {
-        "target": "ES2022",
-        "outDir": "./dist/js/",
-        "noEmitOnError": true
+      "target": "ES2022",
+      "rootDir": "./src",
+      "outDir": "./dist/js",
+      "noEmitOnError": true
     },
     "include": [
-        "./src/**/*"
-, "dist/js/FormatoData.js"    ]
-}
+      "src/**/*"
+    ]
+  }
+  
