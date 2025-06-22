@@ -17,16 +17,13 @@ elementoFormulario.addEventListener("submit", function(event) {
     let tipoTransacao: TipoTransacao = inputTipoTransacao.value as TipoTransacao;
     let valor: number = inputValor.valueAsNumber;
     let data: Date = new Date(inputData.value);
-    let saldo: number = getSaldo();
-
-    atualizarSaldo(saldo);
-
+   
     const novaTransacao: Transacao = {
         tipoTransacao: tipoTransacao,
         valor: valor,
         data: data
     }
 
-    console.log(novaTransacao);
+    Conta.registrarTransacao(novaTransacao);
     elementoFormulario.reset();
 });
