@@ -13,7 +13,6 @@ renderizarSaldo();
 function renderizarSaldo(novoSaldo: number): void {
     if (elementoSaldo !== null) {
         elementoSaldo.textContent = formatarMoeda(Conta.getSaldo());
-        )
         }        
 }
 
