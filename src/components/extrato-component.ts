@@ -41,3 +41,11 @@ function renderizarExtrato(): void {
 
    elementoRegistrosTransacoesExtrato.innerHTML = htmlRegistrosTransacoes;
 }
+
+const ExtratoComponent = {
+    atualizar(): void {
+        renderizarExtrato();
+    }
+}
+
+export default ExtratoComponent;
