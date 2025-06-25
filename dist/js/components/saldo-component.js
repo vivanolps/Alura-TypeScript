@@ -1,37 +1,30 @@
 import { formatarData, formatarMoeda } from "../utils/formatters.js";
 import { FormatoData } from "../types/FormatoData.js";
-
-//Seletores corrigidos para bater com o meu html
+import Conta from "../types/Conta.js";
+// Seletores corrigidos para corresponder ao HTML
 const elementoSaldo = document.querySelector(".saldo-valor .cc .valor");
 const elementoDataAcesso = document.querySelector(".block-saldo time");
-
-//Atualizar a data de acesso
-if (elementoDataAcesso) {
-    elementoDataAcesso.textContent = formatarData(new Date(), FormatoData.DIA_SEMANA_DIA_MES_ANO);
-}
-
-let saldo = 3000; //valor inicial (temporario)
-
-// Atualiza o display do saldo
-function atualizarDisplay() {
-    if (elementoSaldo) {
+function renderizarSaldo(novoSaldo) {
+    if (elementoSaldo !== null) {
+        const saldo = novoSaldo !== undefined ? novoSaldo : Conta.getSaldo();
         elementoSaldo.textContent = formatarMoeda(saldo);
+        console.log("Saldo atualizado:", elementoSaldo.textContent); // Log para depuração
+    }
+    else {
+        console.error("Elemento do saldo não encontrado!");
     }
 }
-
-// Interface pública
-export function getSaldo() {
-    return saldo;
+if (elementoDataAcesso !== null) {
+    elementoDataAcesso.textContent = formatarData(Conta.getDataAcesso(), FormatoData.DIA_SEMANA_DIA_MES_ANO);
+    console.log("Data atualizada:", elementoDataAcesso.textContent); // Log para depuração
 }
-
-export function atualizarSaldo(novoSaldo) {
-    if (typeof novoSaldo === 'number') {
-        saldo = novoSaldo;
-        atualizarDisplay();
-    } else {
-        console.error("Valor inválido para saldo");
+else {
+    console.error("Elemento de data não encontrado!");
+}
+renderizarSaldo();
+const SaldoComponent = {
+    atualizar() {
+        renderizarSaldo();
     }
-}
-
-// Inicialização
-atualizarDisplay();
+};
+export default SaldoComponent;
