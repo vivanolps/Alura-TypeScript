@@ -27,3 +27,5 @@ const Conta = {
         console.log(novaTransacao);
     }
 }
+
+export default Conta;
