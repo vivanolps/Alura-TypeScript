@@ -1,2 +1,5 @@
+import { atualizarSaldo, getSaldo } from "./components/saldo-component.js";
 import "./components/nova-transacao-component.js";
-import "./components/saldo-component.js";
+
+// Exemplo de uso - pode ser removido depois
+console.log("Saldo inicial:", getSaldo());

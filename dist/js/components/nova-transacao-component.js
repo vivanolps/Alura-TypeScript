@@ -1,24 +1,30 @@
 import { atualizarSaldo, getSaldo } from "./saldo-component.js";
-const elementoFormulario = document.querySelector(".block-nova-transacao form");
-elementoFormulario.addEventListener("submit", function (event) {
-    event.preventDefault();
-    if (!elementoFormulario.checkValidity()) {
-        alert("Por favor, preencha todos os dados da transação!");
-        return;
-    }
-    const inputTipoTransacao = elementoFormulario.querySelector("#tipoTransacao");
-    const inputValor = elementoFormulario.querySelector("#valor");
-    const inputData = elementoFormulario.querySelector("#data");
-    let tipoTransacao = inputTipoTransacao.value;
-    let valor = inputValor.valueAsNumber;
-    let data = new Date(inputData.value);
-    let saldo = getSaldo();
-    atualizarSaldo(saldo);
-    const novaTransacao = {
-        tipoTransacao: tipoTransacao,
-        valor: valor,
-        data: data
-    };
-    console.log(novaTransacao);
-    elementoFormulario.reset();
-});
+
+const formulario = document.querySelector(".block-nova-transacao form");
+
+if (formulario) {
+    formulario.addEventListener("submit", (event) => {
+        event.preventDefault();
+        
+        if (!formulario.checkValidity()) {
+            alert("Preencha todos os campos!");
+            return;
+        }
+
+        const tipoTransacao = formulario.querySelector("#tipoTransacao").value;
+        const valor = Number(formulario.querySelector("#valor").value);
+        let novoSaldo = getSaldo();
+
+        // Lógica corrigida para depósito/transferência
+        if (tipoTransacao === "Depósito") {
+            novoSaldo += valor; // Adiciona o valor para depósitos
+        } else {
+            novoSaldo -= valor; // Subtrai para outros tipos (Transferência, Pagamento, etc.)
+        }
+
+        atualizarSaldo(novoSaldo);
+        formulario.reset();
+        
+        console.log(`Transação: ${tipoTransacao} | Valor: ${formatarMoeda(valor)} | Novo saldo: ${formatarMoeda(novoSaldo)}`);
+    });
+}
